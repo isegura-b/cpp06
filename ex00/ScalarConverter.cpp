@@ -17,13 +17,18 @@ static bool isCharLiteral(const std::string &s)
     return s.length() == 3 && s[0] == '\'' && s[2] == '\'';
 }
 
+static bool isSingleCharInput(const std::string &s)
+{
+    return s.length() == 1 && !std::isdigit(static_cast<unsigned char>(s[0]));
+}
+
 void ScalarConverter::convert(const std::string &literal)
 {
     std::cout << std::fixed << std::setprecision(1);
 
-    if (isCharLiteral(literal)) // 'c' format, ifn strtod('a', ..) -> fail
+    if (isCharLiteral(literal) || isSingleCharInput(literal))
     {
-        char c = literal[1];
+        char c = isCharLiteral(literal) ? literal[1] : literal[0];
 
         std::cout << "char: '" << c << "'\n";
         std::cout << "int: " << static_cast<int>(c) << "\n";

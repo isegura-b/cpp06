@@ -2,7 +2,7 @@
 #define SERIALIZER_HPP
 
 #include <stdint.h> // uintptr_t (stores pointer as integer without loss)
-#include "Data.hpp"
+#include "data.hpp"
 
 class Serializer
 {
